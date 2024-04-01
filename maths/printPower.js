@@ -20,21 +20,6 @@ console.log(result);
 //time complexity O(n)
 
 
-/*
-Initial Call: power(2, 3)
-Since y is not 0, it proceeds to calculate temp = power(2, 1) because Math.floor(3/2) = 1.
-First Recursive Call: power(2, 1)
-Again, y is not 0, so it proceeds to calculate temp = power(2, 0) because Math.floor(1/2) = 0.
-Second Recursive Call: power(2, 0)
-Since y is now 0, it returns 1.
-Back to the First Recursive Call: temp = 1
-Since y % 2 is 1 (odd), it returns 2 * temp * temp, which is 2 * 1 * 1 = 2.
-Back to the Initial Call: temp = 2
-Since y % 2 is 1 (odd), it returns 2 * temp * temp, which is 2 * 2 * 2 = 8.
-So, for p = 2 and q = 3, the output of the function power(2, 3) will be 8.
-*/
-
-
 function power(x, y) {
 	if (y === 0) return 1;
 	let temp = power(x, Math.floor(y / 2));
@@ -45,3 +30,20 @@ let p = 2;
 let q = 3;
 console.log(power(p, q))
 // time complexity: O(log n)
+
+/**
+ * When y is 0, the function returns 1, which is the base case.
+For any other value of y, it calculates temp = power(x, Math.floor(y / 2)).
+If y is even (i.e., y % 2 === 0), it returns temp * temp.
+If y is odd (i.e., y % 2 === 1), it returns x * temp * temp.
+
+Now, let's look at your example:
+You are calling power(2, 3).
+The recursive calls will be as follows:
+power(2, 3) calls power(2, 1) (since Math.floor(3 / 2) = 1).
+power(2, 1) calls power(2, 0) (since Math.floor(1 / 2) = 0).
+power(2, 0) returns 1.
+Then, power(2, 1) returns 2 * 1 * 1, which equals 2.
+Finally, power(2, 3) returns 2 * 2 * 2, which equals 8.
+So, the function correctly computes 2^3, which is 8.
+*/
